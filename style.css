@@ -79,3 +79,34 @@ button {
     margin: 1%;
     border-radius: 7px;
 }
+
+#search-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#search-input {
+    font-family: 'Cabin';
+    padding: 8px;
+    margin-right: 10px;
+    border: 2px solid #a8b0bc;
+    border-radius: 7px;
+    width: 300px;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: lightblue;
+    box-shadow: 0 0 5px lightblue;
+}
+
+#search-btn {
+    background-color: #a8b0bc;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+#search-btn:hover {
+    background-color: lightblue;
+    cursor: pointer;
+}

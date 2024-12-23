@@ -189,3 +189,51 @@ firstGameContainer.appendChild(firstGameElement);
 const secondGameElement = document.createElement('p');
 secondGameElement.textContent = secondGame.name;
 secondGameContainer.appendChild(secondGameElement);
+
+// Add search functionality
+const searchContainer = document.createElement('div');
+searchContainer.id = 'search-container';
+
+// Create and configure search input
+const searchInput = document.createElement('input');
+searchInput.type = 'text';
+searchInput.id = 'search-input';
+searchInput.placeholder = 'Search for a game...';
+
+// Create search button
+const searchButton = document.createElement('button');
+searchButton.textContent = 'Search';
+searchButton.id = 'search-btn';
+
+// Add elements to search container
+searchContainer.appendChild(searchInput);
+searchContainer.appendChild(searchButton);
+
+// Insert search container after "Our Games" heading 
+const gamesHeading = document.querySelector('h2:last-of-type');
+gamesHeading.parentNode.insertBefore(searchContainer, gamesHeading.nextSibling);
+
+// Search functionality
+function searchGames() {
+    const searchTerm = searchInput.value.toLowerCase();
+    
+    // Clear current display
+    deleteChildElements(gamesContainer);
+    
+    // Filter games based on search term
+    const filteredGames = GAMES_JSON.filter(game => 
+        game.name.toLowerCase().includes(searchTerm) ||
+        game.description.toLowerCase().includes(searchTerm)
+    );
+    
+    // Display filtered results
+    addGamesToPage(filteredGames);
+}
+
+// Add event listeners
+searchButton.addEventListener('click', searchGames);
+searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        searchGames();
+    }
+});
